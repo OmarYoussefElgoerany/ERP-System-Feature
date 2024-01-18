@@ -10,15 +10,18 @@ namespace ErpSystemFeatureDAL.Data.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Address { get; set; } = string.Empty;
-        public string Residance { get; set; } = string.Empty;
         public string Job { get; set; } = string.Empty;
+        public string? Address { get; set; }
+        public string? Residance { get; set; }
         public int Mobile { get; set; }
-        public int Whatsapp { get; set; }
-        public string Nationality { get; set; } = string.Empty;
-        public DateTime DateAdded { get; set; }
-        public DateTime LastEdit { get; set; }
-        public string CustomerRating { get; set; }= string.Empty;
-        public int? CustomerId { get; set; }
+        public int? Whatsapp { get; set; }
+        public string? Nationality { get; set; }
+        public DateTime? DateAdded { get; set; } = DateTime.Now;
+        public DateTime? LastEdit { get; set; } = DateTime.Now;
+        public string? CustomerRating { get; set; }
+        public int? EmployeeId { get; set; }
+
+        public virtual List<Calls> Calls { get; set; } = new List<Calls>();
+        public Employee? Employee { get; set; }
     }
 }
