@@ -11,7 +11,7 @@ namespace ErpSystemFeatureBLL.Managers.EmployeeManager
     {
         List<ReadCustomerDto>? GetAll();
 
-        List<ReadCustomerDto>? GetAllPerPage(int page, int countPerPage);
+        CustomerPaginationDto? GetAllPerPage(int page, int countPerPage);
 
         bool isAdded(AddCustomerDto customerDto);
 

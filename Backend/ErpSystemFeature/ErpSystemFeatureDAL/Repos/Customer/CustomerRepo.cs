@@ -26,5 +26,7 @@ namespace ErpSystemFeatureDAL
                .Skip((page - 1) * countPerPage)
                .Take(countPerPage).ToList();
         }
+
+        public int GetCount() => dbContext.Set<Customer>().Count();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ErpSystemFeatureDAL.Data.Models;
 using ErpSystemFeatureDAL.Repos.GenericRepo;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace ErpSystemFeatureDAL
     public interface ICustomerRepo : IGenericRepo<Customer>
     {
         List<Customer> GetAllPerPage(int page, int countPerPage);
+        //For Pagination
+        int GetCount();
+
     }
 
 }

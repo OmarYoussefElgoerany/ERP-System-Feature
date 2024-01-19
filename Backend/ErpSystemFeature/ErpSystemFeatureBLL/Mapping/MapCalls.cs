@@ -10,6 +10,13 @@ namespace ErpSystemFeatureBLL.Mapping
 {
     public static class MapCalls
     {
+        public static CallsPaginationDto CallsPagination(List<ReadCallsDto> readCallsDtos , int count)
+        {
+            CallsPaginationDto callsPaginationDto = new CallsPaginationDto();
+            callsPaginationDto.ReadCallsDto = readCallsDtos;
+            callsPaginationDto.Count = count;
+            return callsPaginationDto;
+        }
         public static Calls ToCalls(AddCallsDto callsDto)
         {
             Calls calls = new Calls();

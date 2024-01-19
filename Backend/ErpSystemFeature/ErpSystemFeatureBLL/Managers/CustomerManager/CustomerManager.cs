@@ -29,16 +29,18 @@ namespace ErpSystemFeatureBLL.Managers.EmployeeManager
             return customerDto;
         }
 
-        public List<ReadCustomerDto>? GetAllPerPage(int page, int countPerPage)
+        public CustomerPaginationDto? GetAllPerPage(int page, int countPerPage)
         {
             var customers = unitOfWork.customerRepo.GetAllPerPage(page,countPerPage);
-
             if (customers == null)
                 return null;
+            var count = unitOfWork.customerRepo.GetCount();
 
             var customerDto = MapCustomer.ToCustomerDto(customers);
 
-            return customerDto;
+            var customerPagination = MapCustomer.CustomerPagination(customerDto, count);
+
+            return customerPagination;
         }
 
         public bool isAdded(AddCustomerDto customerDto)

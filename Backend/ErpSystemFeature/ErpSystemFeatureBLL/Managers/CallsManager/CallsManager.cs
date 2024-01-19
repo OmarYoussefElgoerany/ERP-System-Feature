@@ -28,15 +28,18 @@ namespace ErpSystemFeatureBLL.Managers.CallsManager
             return callsDto;
         }
 
-        public List<ReadCallsDto>? GetAllPerPage(int page, int countPerPage)
+        public CallsPaginationDto? GetAllPerPage(int page, int countPerPage)
         {
             var calls = unitOfWork.callsRepo.GetAllPerPage(page ,countPerPage);
             if (calls == null)
                 return null;
+            var count = unitOfWork.callsRepo.GetCount();
 
             var callsDto = MapCalls.ToCallsDto(calls);
 
-            return callsDto;
+            var callsPagination = MapCalls.CallsPagination(callsDto, count);
+
+            return callsPagination;
         }
 
         public bool isAdded(AddCallsDto callsDto)

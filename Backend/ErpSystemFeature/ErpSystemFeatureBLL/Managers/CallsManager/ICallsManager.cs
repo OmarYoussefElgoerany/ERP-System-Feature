@@ -12,7 +12,7 @@ namespace ErpSystemFeatureBLL.Managers.CallsManager
     {
         List<ReadCallsDto>? GetAll();
 
-        List<ReadCallsDto>? GetAllPerPage(int page, int countPerPage);
+        CallsPaginationDto? GetAllPerPage(int page, int countPerPage);
 
         bool isAdded(AddCallsDto callsDto);
 

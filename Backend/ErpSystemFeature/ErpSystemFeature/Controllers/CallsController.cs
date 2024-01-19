@@ -27,10 +27,10 @@ namespace ErpSystemFeatureApi.Controllers
             return Ok(calls);
         }
         [HttpGet("{page}/{countPerPage}")]
-        public ActionResult<List<ReadCustomerDto>>? GetAllPerPage(int page, int countPerPage)
+        public ActionResult<CallsPaginationDto>? GetAllPerPage(int page, int countPerPage)
         {
-               if (page <= 0 || countPerPage <= 0)
-                return BadRequest();
+            if (page <= 0 || countPerPage <= 0)
+             return BadRequest();
             var calls = callsManager.GetAllPerPage(page,countPerPage);
             if (calls == null)
                 return NoContent();

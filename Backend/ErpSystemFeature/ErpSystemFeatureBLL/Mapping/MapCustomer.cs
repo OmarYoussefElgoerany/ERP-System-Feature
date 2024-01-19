@@ -10,6 +10,13 @@ namespace ErpSystemFeatureBLL.Mapping
 {
     public static class MapCustomer
     {
+        public static CustomerPaginationDto CustomerPagination(List<ReadCustomerDto> customerReadDtos, int count)
+        {
+            CustomerPaginationDto customerPagination = new CustomerPaginationDto();
+            customerPagination.CustomerDtos = customerReadDtos;
+            customerPagination.TotalCount = count;
+            return customerPagination;
+        }
         public static Customer ToCustomer(AddCustomerDto customerDto)
         {
             Customer customer = new Customer();

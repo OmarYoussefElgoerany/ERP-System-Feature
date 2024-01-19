@@ -24,7 +24,7 @@ namespace ErpSystemFeatureApi.Controllers
             return customers;
         }
         [HttpGet("{page}/{countPerPage}")]
-        public ActionResult<List<ReadCustomerDto>>? GetAllPerPage(int page, int countPerPage)
+        public ActionResult<CustomerPaginationDto>? GetAllPerPage(int page, int countPerPage)
         {
             if(page <= 0 ||  countPerPage <= 0) 
                 return BadRequest();
