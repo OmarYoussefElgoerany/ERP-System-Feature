@@ -10,6 +10,7 @@ namespace ErpSystemFeatureDAL
 {
     public interface ICustomerRepo : IGenericRepo<Customer>
     {
-        
+        List<Customer> GetAllPerPage(int page, int countPerPage);
     }
+
 }

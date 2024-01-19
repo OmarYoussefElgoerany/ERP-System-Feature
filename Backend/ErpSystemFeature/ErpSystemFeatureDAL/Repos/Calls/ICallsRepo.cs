@@ -10,5 +10,6 @@ namespace ErpSystemFeatureDAL
 {
     public interface ICallsRepo:IGenericRepo<Calls>
     {
+        List<Calls> GetAllPerPage(int page, int countPerPage);
     }
 }

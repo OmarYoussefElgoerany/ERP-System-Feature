@@ -18,12 +18,7 @@ namespace ErpSystemFeatureDAL.Repos.GenericRepo
 
       
 
-        public List<TEntity> GetAll(int page, int countPerPage)
-        {
-          return dbContext.Set<TEntity>()
-                .Skip((page-1) * countPerPage)
-                .Take(countPerPage).ToList();
-        }
+        public List<TEntity>? GetAll() => dbContext.Set<TEntity>().ToList();
 
         public TEntity? GetById(int id) => dbContext.Set<TEntity>().Find(id);
       

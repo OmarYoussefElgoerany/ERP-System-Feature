@@ -8,7 +8,7 @@ namespace ErpSystemFeatureDAL.Repos.GenericRepo
 {
     public interface IGenericRepo<TEntity> where TEntity : class
     {
-        List<TEntity> GetAll(int page, int countPerPage);
+        List<TEntity>? GetAll();
 
         TEntity? GetById(int id);
 
