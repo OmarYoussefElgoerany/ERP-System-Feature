@@ -17,7 +17,7 @@ namespace ErpSystemFeatureBLL.Managers.EmployeeManager
 
         bool isUpdated(ReadCustomerDto customerDto);
 
-        bool isDeleted (ReadCustomerDto customerDto);
+        bool isDeleted (int id);
 
     }
 }

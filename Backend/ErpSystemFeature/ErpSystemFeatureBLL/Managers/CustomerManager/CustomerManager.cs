@@ -77,12 +77,14 @@ namespace ErpSystemFeatureBLL.Managers.EmployeeManager
         }
 
 
-        public bool isDeleted(ReadCustomerDto customerDto)
+        public bool isDeleted(int id)
         {
-            if (customerDto == null)
+            if (id == 0)
                 return false;
 
-            var customer = MapCustomer.ToCustomerWithID(customerDto);
+            var customer = unitOfWork.customerRepo.GetById(id);
+            if (customer == null)
+                return false;
 
             unitOfWork.customerRepo.isDeleted(customer);
 

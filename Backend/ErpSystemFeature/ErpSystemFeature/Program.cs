@@ -1,5 +1,10 @@
 
+using ErpSystemFeatureBLL.Managers.CallsManager;
+using ErpSystemFeatureBLL.Managers.CustomerManager;
+using ErpSystemFeatureBLL.Managers.EmployeeManager;
+using ErpSystemFeatureDAL;
 using ErpSystemFeatureDAL.Data.Context;
+using ErpSystemFeatureDAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 namespace ErpSystemFeature
@@ -22,6 +27,22 @@ namespace ErpSystemFeature
             var connectionString = builder.Configuration.GetConnectionString("ERP");
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connectionString));
+            #endregion
+
+            #region Repos
+            builder.Services.AddScoped<ICallsRepo,CallsRepo>();
+            builder.Services.AddScoped<ICustomerRepo,CustomerRepo>();
+            builder.Services.AddScoped<IEmployeeRepo,EmployeeRepo>();
+            #endregion
+
+            #region UnitOfWork
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            #endregion
+
+            #region Managers
+            builder.Services.AddScoped<ICallsManager,CallsManager>();
+            builder.Services.AddScoped<ICustomerManager,CustomerManager>();
+            builder.Services.AddScoped<IEmployeeManager,EmployeeManager>();
             #endregion
 
             var app = builder.Build();
