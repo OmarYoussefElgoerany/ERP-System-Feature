@@ -1,4 +1,4 @@
-export interface ReadCustomerDto {
+export interface IReadCustomerDto {
   id: number;
   name: string;
   job: string;

@@ -44,7 +44,17 @@ namespace ErpSystemFeature
             builder.Services.AddScoped<ICustomerManager,CustomerManager>();
             builder.Services.AddScoped<IEmployeeManager,EmployeeManager>();
             #endregion
-
+            #region CORS
+            var allowPolicy = "AllowPolicy";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(allowPolicy, builder =>
+                {
+                    builder.AllowAnyOrigin().
+                    AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+            #endregion
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -55,6 +65,8 @@ namespace ErpSystemFeature
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(allowPolicy);
 
             app.UseAuthorization();
 
