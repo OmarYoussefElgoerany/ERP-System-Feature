@@ -1,27 +1,51 @@
-<div class="dropdown">
-  <button
-    class="btn btn-secondary dropdown-toggle"
-    type="button"
-    id="dropdownMenuButton1"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li *ngFor="let column of forCheckedCol">
-      <input
-        type="checkbox"
-        class="form-check-input"
-        [name]="column"
-        [value]="column"
-        [checked]="selectedColumns.includes(column)"
-        (change)="onCheckboxChange(column, $event)"
-      />
-      <label class="form-check-label" [for]="column">{{ column }}</label>
-    </li>
-  </ul>
+<div class="d-flex justify-content-around">
+  <div>
+    <a routerLink="add" class="btn btn-outline-primary"> Add New Account</a>
+  </div>
+  <div>
+    <button
+      type="button"
+      (click)="refreshPage($event)"
+      class="btn btn-outline-primary"
+    >
+      Refresh Table
+    </button>
+  </div>
+  <div>
+    <div>
+      <button class="btn btn-outline-primary" (click)="convertToExcel()">
+        Excel Sheet
+      </button>
+    </div>
+  </div>
+  <div>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Edit Coloumns
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li *ngFor="let column of forCheckedCol">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            [name]="column"
+            [value]="column"
+            [checked]="selectedColumns.includes(column)"
+            (change)="onCheckboxChange(column, $event)"
+          />
+          <label class="form-check-label" [for]="column">{{ column }}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
+
 <mat-form-field class="input-full-width">
   <mat-label>Search</mat-label>
   <input
@@ -32,7 +56,7 @@
   />
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>ID</th>
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -78,6 +102,67 @@
   <ng-container matColumnDef="customerRating">
     <th mat-header-cell *matHeaderCellDef>Customer Rating</th>
     <td mat-cell *matCellDef="let element">{{ element.customerRating }}</td>
+  </ng-container>
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef>Edit</th>
+    <td mat-cell *matCellDef="let element">
+      <a class="btn btn-primary" [routerLink]="['/edit', element.id]">Edit</a>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>Delete</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Delete
+      </button>
+
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-footer row d-flex justify-content-">
+              <div class="col-5">
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  (click)="onDelete(element.id)"
+                  class="btn btn-primary"
+                >
+                  Save changes
+                </button>
+              </div>
+              <div class="col-5">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

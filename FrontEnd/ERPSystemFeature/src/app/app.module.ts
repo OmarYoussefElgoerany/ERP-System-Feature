@@ -8,15 +8,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AddCustomerComponent } from './Customer/add-customer/add-customer.component';
-import { EditCustomerComponent } from './Customer/edit-customer/edit-customer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CustomertableComponent } from './customertable/customertable.component';
 import { MatInputModule } from '@angular/material/input';
+import { RouterModule } from '@angular/router';
+import { EditCustomerComponent } from './Customer/edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,8 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatInputModule,
     FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
   ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],

@@ -28,6 +28,16 @@ namespace ErpSystemFeatureBLL.Managers.EmployeeManager
 
             return customerDto;
         }
+        public ReadCustomerDto? GetById(int id)
+        {
+            var customer = unitOfWork.customerRepo.GetById(id);
+            if (customer == null)
+                return null;
+
+            var customerDto = MapCustomer.ToCustomerDto(customer);
+
+            return customerDto;
+        }
 
         public CustomerPaginationDto? GetAllPerPage(int page, int countPerPage)
         {

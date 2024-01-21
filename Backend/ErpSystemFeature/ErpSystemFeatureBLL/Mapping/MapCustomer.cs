@@ -33,6 +33,7 @@ namespace ErpSystemFeatureBLL.Mapping
             customer.LastEdit = customerDto.LastEdit;
             return customer;
         }
+
         public static Customer ToCustomerWithID(ReadCustomerDto customerDto)
         {
             Customer customer = new Customer();
@@ -68,6 +69,23 @@ namespace ErpSystemFeatureBLL.Mapping
                 Whatsapp = i.Whatsapp,
                 EmployeeId = i.EmployeeId
             }).ToList();
+        }
+        public static ReadCustomerDto ToCustomerDto(Customer customer)
+        {
+            ReadCustomerDto customerDto = new ReadCustomerDto();
+            customerDto.Id = customer.Id;
+            customerDto.Name = customer.Name;
+            customerDto.Address = customer.Address;
+            customerDto.Residance = customer.Residance;
+            customerDto.CustomerRating = customer.CustomerRating;
+            customerDto.EmployeeId = customer.EmployeeId;
+            customerDto.Job = customer.Job;
+            customerDto.Mobile = customer.Mobile;
+            customerDto.DateAdded = customer.DateAdded;
+            customerDto.Nationality = customer.Nationality;
+            customerDto.Whatsapp = customer.Whatsapp;
+            customerDto.LastEdit = customer.LastEdit;
+            return customerDto;
         }
     }
 }

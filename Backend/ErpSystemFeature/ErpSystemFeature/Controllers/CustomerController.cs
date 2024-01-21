@@ -23,6 +23,14 @@ namespace ErpSystemFeatureApi.Controllers
                 return NoContent();
             return customers;
         }
+        [HttpGet("{id}")]
+        public ActionResult<ReadCustomerDto>? GetById(int id)
+        {
+            var customer = customerManager.GetById(id);
+            if (customer == null)
+                return NoContent();
+            return customer;
+        }
         [HttpGet("{page}/{countPerPage}")]
         public ActionResult<CustomerPaginationDto>? GetAllPerPage(int page, int countPerPage)
         {

@@ -1,4 +1,4 @@
-export interface AddCustomerDto {
+export interface IAddCustomerDto {
   name: string;
   job: string;
   address: string | null;

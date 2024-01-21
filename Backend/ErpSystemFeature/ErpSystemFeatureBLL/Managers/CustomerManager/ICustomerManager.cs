@@ -10,7 +10,7 @@ namespace ErpSystemFeatureBLL.Managers.EmployeeManager
     public interface ICustomerManager
     {
         List<ReadCustomerDto>? GetAll();
-
+        ReadCustomerDto? GetById(int id);
         CustomerPaginationDto? GetAllPerPage(int page, int countPerPage);
 
         bool isAdded(AddCustomerDto customerDto);

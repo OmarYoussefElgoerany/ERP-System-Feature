@@ -30,28 +30,3 @@ export class HomeComponent {
     console.log(coloumn);
   }
 }
-// handleButtonClick(input: string) {}
-// totalCount = 0;
-// page = 1;
-// customers: IReadCustomerDto[] = [];
-// countPerPage = 10;
-// isLoaded: boolean = false;
-// constructor(
-//   private customerService: CustomerService,
-//   private renderer: Renderer2,
-//   private el: ElementRef
-// ) {}
-// ngOnInit(): void {
-//   this.getCustomers(1);
-// }
-
-// public getCustomers(page: number) {
-//   this.customerService
-//     .GetAllWithPagi(page, this.countPerPage)
-//     .subscribe((customersPagi) => {
-//       this.isLoaded = true;
-//       this.totalCount = customersPagi.totalCount;
-//       this.customers = customersPagi.customerDtos;
-//       this.page = page;
-//     });
-// }

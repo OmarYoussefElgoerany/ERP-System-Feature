@@ -1,5 +1,6 @@
 import {
   Component,
+  ElementRef,
   Input,
   OnChanges,
   OnInit,
@@ -7,17 +8,20 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { IReadCustomerDto } from '../Dtos/CustomerDtos/IReadCustomerDto';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-
+import { ActivatedRoute } from '@angular/router';
+import * as xls from 'xlsx';
 @Component({
   selector: 'app-customertable',
   templateUrl: './customertable.component.html',
   styleUrl: './customertable.component.css',
 })
 export class CustomertableComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator?: MatPaginator;
+  @ViewChild(MatTable) table!: MatTable<any>;
+  @ViewChild(MatPaginator)
+  paginator?: MatPaginator;
   dataSource: any;
   length = 500;
   pageSize = 10;
@@ -37,11 +41,16 @@ export class CustomertableComponent implements OnInit {
     'dateAdded',
     'lastEdit',
     'customerRating',
+    'edit',
+    'delete',
   ];
   forCheckedCol = this.displayedColumns;
   selectedColumns: string[] = [];
 
-  constructor(private customerService: CustomerService) {}
+  constructor(
+    private customerService: CustomerService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.customerService.GetAll().subscribe((data) => {
@@ -50,10 +59,20 @@ export class CustomertableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
+  public refreshPage(e: Event) {
+    e.preventDefault;
+    this.customerService.GetAll().subscribe((data) => {
+      this.dataSource.data = data;
+    });
+    console.log('Button clicked!');
+  }
   private handleInputDataChange() {
     this.displayedColumns = this.selectedColumns;
   }
 
+  onDelete(customerId: number) {
+    this.customerService.Delete(customerId).subscribe();
+  }
   onCheckboxChange(column: string, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
 
@@ -80,5 +99,19 @@ export class CustomertableComponent implements OnInit {
   }
   findCustomer(inputValue: string) {
     this.dataSource.filter = inputValue;
+  }
+  convertToExcel(): void {
+    const dataToExport = this.dataSource.data.map((item: any) => {
+      const exportItem: any = {};
+      this.displayedColumns.forEach((column: any) => {
+        exportItem[column] = item[column];
+      });
+      return exportItem;
+    });
+
+    const ws: xls.WorkSheet = xls.utils.json_to_sheet(dataToExport);
+    const wb: xls.WorkBook = xls.utils.book_new();
+    xls.utils.book_append_sheet(wb, ws, 'Sheet1');
+    xls.writeFile(wb, 'customers.xlsx');
   }
 }

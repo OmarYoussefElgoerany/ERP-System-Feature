@@ -1,1 +1,317 @@
-<p>edit-customer works!</p>
+<div class="container">
+  <div class="formstyle">
+    <h2>Add Customer</h2>
+    <form (submit)="handleSubmit($event)" [formGroup]="editCustomer">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control"
+          value="{{ customer.name }}"
+          id="name"
+          name="name"
+        />
+      </div>
+
+      <input
+        formControlName="job"
+        type="text"
+        [hidden]="true"
+        value="{{ customer.id }}"
+        class="form-control"
+        id="job"
+        name="job"
+      />
+      <div
+        class="alert alert-warning"
+        *ngIf="Name?.touched && editCustomer.controls.name.errors?.['required']"
+      >
+        This field is required
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.name.touched && editCustomer.controls.name.errors?.['maxlength']"
+      >
+        The name is too long
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.name.touched && editCustomer.controls.name.errors?.['minlength']"
+      >
+        The user name is too short
+      </div>
+
+      <!-- <div
+        class="alert alert-warning"
+        *ngIf="UserName?.invalid && UserName?.touched"
+      >
+        <span *ngIf="UserName?.errors?.['required']"
+          >Please Enter User Name</span
+        >
+        <span *ngIf="UserName?.errors?.['maxLength']"
+          >Max Length is 20 charchter</span
+        >
+      </div> -->
+      <div class="mb-3">
+        <label class="form-label" for="job ">Job</label>
+        <input
+          formControlName="job"
+          type="text"
+          value="{{ customer.job }}"
+          class="form-control"
+          id="job"
+          name="job"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="Job?.touched && editCustomer.controls.job.errors?.['required']"
+      >
+        This field is required
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.job.touched && editCustomer.controls.job.errors?.['maxlength']"
+      >
+        The job name is too long
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.job.touched && editCustomer.controls.job.errors?.['minlength']"
+      >
+        The job name is too short
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="Address">Address</label>
+        <input
+          formControlName="address"
+          type="text"
+          class="form-control"
+          id="address"
+          name="address"
+        />
+
+        <div
+          class="alert alert-warning"
+          *ngIf="editCustomer.controls.address.touched && editCustomer.controls.address.errors?.['maxlength']"
+        >
+          The addres is too long
+        </div>
+        <div
+          class="alert alert-warning"
+          *ngIf="editCustomer.controls.address.touched && editCustomer.controls.address.errors?.['minlength']"
+        >
+          The address is too short
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Residance</label>
+        <input
+          formControlName="residance"
+          type="email"
+          class="form-control"
+          id="residance"
+        />
+
+        <div
+          class="alert alert-warning"
+          *ngIf="Residance?.touched && editCustomer.controls.residance.errors?.['required']"
+        >
+          This field is required
+        </div>
+        <div
+          class="alert alert-warning"
+          *ngIf="editCustomer.controls.residance.touched && editCustomer.controls.residance.errors?.['pattern']"
+        >
+          Please enter residance
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="Mobile" class="form-label">Mobile </label>
+        <input
+          formControlName="mobile"
+          type="number"
+          class="form-control"
+          id="Mobile"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="Mobile?.touched && editCustomer.controls.mobile.errors?.['required']"
+      >
+        This field is required
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.mobile.touched && editCustomer.controls.mobile.errors?.['pattern']"
+      >
+        Enter Correct mobile number
+      </div>
+      <div class="mb-3">
+        <label for="whatsapp " class="form-label">Whatsapp</label>
+        <input
+          formControlName="whatsapp"
+          type="text"
+          class="form-control"
+          id="whatsapp"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="Whatsapp?.touched && editCustomer.controls.whatsapp.errors?.['required']"
+      >
+        This field is required
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.whatsapp.touched && editCustomer.controls.whatsapp.errors?.['maxlength']"
+      >
+        Please Enter Correct Number
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.whatsapp.touched && editCustomer.controls.whatsapp.errors?.['minlength']"
+      >
+        Please Enter Correct Number
+      </div>
+      <div class="mb-3">
+        <label for="nationality" class="form-label">Nationality </label>
+        <input
+          formControlName="nationality"
+          type="text"
+          class="form-control"
+          id="nationality"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.nationality.touched && editCustomer.controls.nationality.errors?.['maxlength']"
+      >
+        Please Enter Correct text
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.nationality.touched && editCustomer.controls.nationality.errors?.['minlength']"
+      >
+        Please Enter Correct text
+      </div>
+      <div class="mb-3">
+        <label for="dateAdded " class="form-label">Date Added </label>
+        <input
+          formControlName="dateAdded"
+          type="date"
+          class="form-control"
+          id="dateAdded"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="DateAdded?.touched && editCustomer.controls.dateAdded.errors?.['required']"
+      >
+        This field is required
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.dateAdded.touched && editCustomer.controls.dateAdded.errors?.['maxlength']"
+      >
+        Please Enter Correct text
+      </div>
+      <div class="mb-3">
+        <label for="lastEdit" class="form-label">Last Edit </label>
+        <input
+          formControlName="lastEdit"
+          type="date"
+          class="form-control"
+          id="lastEdit"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.lastEdit.touched && editCustomer.controls.lastEdit.errors?.['maxlength']"
+      >
+        Please Enter Correct date
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.lastEdit.touched && editCustomer.controls.lastEdit.errors?.['minlength']"
+      >
+        Please Enter Correct date
+      </div>
+      <div class="mb-3">
+        <label for="customerRating" class="form-label">CustomerRating </label>
+        <input
+          formControlName="customerRating"
+          type="text"
+          class="form-control"
+          id="customerRating"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.customerRating.touched && editCustomer.controls.customerRating.errors?.['maxlength']"
+      >
+        Please Enter Correct text
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.customerRating.touched && editCustomer.controls.customerRating.errors?.['minlength']"
+      >
+        Please Enter Correct text
+      </div>
+      <div class="mb-3">
+        <label for="EmployeeName" class="form-label">Employee name </label>
+        <input
+          formControlName="employeeId"
+          type="number"
+          class="form-control"
+          id="employeeId"
+        />
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.employeeId.touched && editCustomer.controls.employeeId.errors?.['maxlength']"
+      >
+        Please Enter Correct text
+      </div>
+      <div
+        class="alert alert-warning"
+        *ngIf="editCustomer.controls.employeeId.touched && editCustomer.controls.employeeId.errors?.['minlength']"
+      >
+        Please Enter Correct text
+      </div>
+
+      <div class="alert alert-warning" *ngIf="tryAgainError">Try Again</div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="editCustomer.invalid"
+        (click)="goBack()"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+<button (click)="goBack()">Close</button>
+<!-- <div>
+  {{ editCustomer.value | json }}
+</div> -->
+
+<!-- <div>
+  <h2>fname</h2>
+  {{ Fname?.errors | json }}
+</div> -->
+<!-- <div>
+  <h2>username</h2>
+  {{ UserName?.errors | json }}
+</div>
+
+<div>
+  <h2>Email</h2>
+  {{ Email?.errors | json }}
+</div>
+<div>
+  <h2>fname</h2>
+  {{ Fname?.errors | json }}
+</div> -->
