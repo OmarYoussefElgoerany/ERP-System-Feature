@@ -3,7 +3,7 @@
 Brief description of the project.
 
 ## Overview
-
+"Developed a module for an ERP system in C# that includes pagination, CRUD (Create, Read, Update, Delete) operations, searching, and sorting features, enhancing the system's functionality and usability."
 This project is built using Angular for the front end and ASP.NET Core for the back end, 
 following the n-tier architecture.
 The backend implements the repository pattern and unit of work pattern in the data access layer, 
@@ -16,6 +16,7 @@ ensuring a modular and maintainable codebase.
 - N-tier architecture ensures separation of concerns and scalability.
 - Repository pattern is employed for data access, promoting a clean and organized codebase.
 - Unit of Work pattern is utilized for managing transactions and database interactions.
+- 
 
 ## Project Structure
 
